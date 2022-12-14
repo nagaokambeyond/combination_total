@@ -20,7 +20,8 @@ def get_integral_value_combination(list, target):
 
 def get_integral_value_combination_refacter(list, target_value):
     list_length = len(list)
-    def recursion(start_index, combination_list, result):
+    result = []
+    def recursion(start_index, combination_list):
         summary = sum(combination_list)
         if target_value == summary: 
             result.append(combination_list)
@@ -28,10 +29,11 @@ def get_integral_value_combination_refacter(list, target_value):
             return  # 超えているためなにも返さない
         else:
             for index in range(start_index, list_length):
-                recursion((index + 1), combination_list + [list[index]], result)
-        return result
-    return recursion(0, [], [])
+                recursion((index + 1), combination_list + [list[index]])
+        return
+    recursion(0, [])
+    return result
 
 
-#print(get_integral_value_combination_refacter(source, 10))
-print(get_integral_value_combination(source, 10))
+print(get_integral_value_combination_refacter(source, 10))
+#print(get_integral_value_combination(source, 10))
